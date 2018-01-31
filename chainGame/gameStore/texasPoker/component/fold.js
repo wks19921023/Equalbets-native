@@ -9,13 +9,17 @@ class Fold extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      display:"none"
+    }
   }
 
   render() {
     const {I18n} = this.props;
     return (
-      <TouchableOpacity style={styles.wrap}>
+      <TouchableOpacity onPress={()=>{
+          this.props.click()
+        }} style={[styles.wrap,{display:this.props.display}]}>
         <Image style={styles.fold} source={require("./../static/images/fold.png")}/>
         <Text style={styles.text}>{I18n.t("fold")}</Text>
       </TouchableOpacity>
@@ -31,7 +35,7 @@ const styles = StyleSheet.create({
     height:42,
     position:"absolute",
     bottom:2,
-    right:178,
+    right:75,
     zIndex:100,
   },
   fold:{

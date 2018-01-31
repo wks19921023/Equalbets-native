@@ -18,12 +18,14 @@ import Start from './frameworks/views/start';
 import LoginIn from './frameworks/views/loginIn';
 import GameList from './frameworks/views/gameList';
 import TexasPoker from './gameStore/texasPoker';
+import GameType from './gameStore/texasPoker/gameType';
 //Start.prototype.store=store;
 const Router = StackNavigator({
   Main:{screen:Start,initalRouterParams:store},
   LoginIn:{screen:LoginIn},
   GameList:{screen:GameList},
-  TexasPoker:{screen:TexasPoker}  
+  TexasPoker:{screen:TexasPoker},
+  GameType:{screen:GameType}  
 },{headerMode:'none',mode:'modal'});
 //screenProps obj
 const store = configureStore();

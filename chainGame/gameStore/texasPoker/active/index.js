@@ -6,6 +6,9 @@ import * as Provider from "./provider";
 export function getInfo(api){
     Provider.message(api,"GET_INFO");
 };
+export function getTable(api){
+    Provider.message(api,"GET_TABLE");
+};
 export function sitIn(api,data){
     Provider.message(api,"SIT_IN",data);
 };

@@ -20,6 +20,7 @@ const TexasPoker = {
   dealCards:hands.dealCards,
   action:actions.action,
   actionReply:actions.actionReply,
-  actionEvent:actions.actionEvent
+  actionEvent:actions.actionEvent,
+  getTable:actions.getTable
 };
 export default TexasPoker;

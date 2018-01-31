@@ -22,3 +22,4 @@ export const ACTION = "ACTION";
 export const ACTION_REPLY = "ACTION_REPLY";
 export const ACTION_EVENT = "ACTION_EVENT";
 export const DEAL_CARDS = "DEAL_CARDS";
+export const GET_TABLE= "GET_TABLE";

@@ -28,7 +28,7 @@ class GameList extends Component {
               </View>
             </ImageBackground>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{navigate("LoginIn")}}>
+          <TouchableOpacity onPress={()=>{navigate("GameType")}}>
             <ImageBackground style={styles.rightBtn} source={require("./../static/images/loginBtn.png")}>
               <View style={styles.btnTextWrap}>
                 <Text style={styles.btnText}>{I18n.t("loginBtn")}</Text>

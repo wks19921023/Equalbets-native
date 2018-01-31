@@ -2,7 +2,6 @@
 /*********
 ***texaspoker cardtype
 *********/
-const getWinner = require("./getWinner");
 function cardType(){
   const a = [].map.call(arguments[0].pokers,function(p){
     return new Poker(p);
@@ -216,64 +215,14 @@ const getType = function(arg,owner){
   }
   return returnData;
 };
-module.exports = cardType;
-const p1 = {
-  pokers:[0,2,4,6,7,8,9],
-  owner:"player1"
-};
-const p2 = {
-  pokers:[6,7,8,9,10,11,12],
-  owner:"player2"
-};
-const p3 = {
-  pokers:[6,19,32,45,46,47,48],
-  owner:"player3"
-};
-const p4 ={
-  pokers:[6,19,32,46,47,48,49],
-  owner:"player4"
-};
-const p5 ={
-  pokers:[10,23,36,8,21,34,45],
-  owner:"player5"
-};
-const p6 = {
-  pokers:[12,25,38,37,36,7,5],
-  owner:"player6"
-};
-const p7 = {
-  pokers:[12,25,11,24,23,5,45],
-  owner:"player7"
-};
-const p8 = {
-  pokers:[12,25,11,23,9,30,46],
-  owner:"player8"
-};
-const p9 = {
-  pokers:[12,3,11,23,9,30,46],
-  owner:"player9"
-};
-const test = {
-  pokers:[10,23,36,3,11,24,25],  //QQQ5KKA   5QQQKKA   QQQKK
-  owner:"tester1"
-};
-//console.log(cardType(p1)); // J 10 9 8 6   flush
-//console.log(cardType(p2));//A K Q J 10  straightFlush
-//console.log(cardType(p3));//8,8,8,8,J  fourCard
-//console.log(cardType(p4));//8 9 10 J Q  straight
-//console.log(cardType(p5));  //gourd  Q Q Q 10 10
-//console.log(cardType(p6)); //threeCard A A A K Q
-//console.log(cardType(p7));   // two double A A  K K Q
-//console.log(cardType(p8));  //one double A A K Q J
-//console.log(cardType(p9));   //hightCard  9 J Q K A
-console.log(cardType(test));
-const testArr = [cardType(p1),cardType(p2),cardType(p3),cardType(p4),cardType(p5),cardType(p6),cardType(p7),cardType(p8),cardType(p9)]
-const result = getWinner(testArr);
+export default cardType;
+//const testArr = [cardType(p1),cardType(p2),cardType(p3),cardType(p4),cardType(p5),cardType(p6),cardType(p7),cardType(p8),cardType(p9)]
+//const result = getWinner(testArr);
 //console.log(result);  //different type
 //same type
-const t1 = cardType({pokers:[10,23,36,9,22,1,2],owner:"player3"}); //QQQJJ34 KKK101057
-const t2 = cardType({pokers:[11,24,37,8,21,3,5],owner:"player4"});
-const tArr = [t1,t2];
-const rs1 = getWinner(tArr);
+//const t1 = cardType({pokers:[10,23,36,9,22,1,2],owner:"player3"}); //QQQJJ34 KKK101057
+//const t2 = cardType({pokers:[11,24,37,8,21,3,5],owner:"player4"});
+//const tArr = [t1,t2];
+//const rs1 = getWinner(tArr);
 //console.log("winner is："+rs1.owner);  //10,10,K,K,K
 //console.log(rs1)

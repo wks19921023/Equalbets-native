@@ -23,7 +23,7 @@ class LoginInput extends Component {
     eventBus.addListener("loginInSuc",function(data){   
       //console.log(data)
       if(data.msg == "success"){
-        navigate("TexasPoker");
+        navigate("GameList");
       }else{
         console.log("some error happen!")
       }
@@ -33,7 +33,7 @@ class LoginInput extends Component {
   }
   loginIn(){ 
     const {api} = this.props.screenProps;
-    api.dispatch("login","LOGIN_IN",);
+    api.dispatch("login","LOGIN_IN",{userName:this.state.idText,pwd:this.state.pwdText});
   }
   render() {
     const {I18n} = this.props.screenProps;
@@ -41,9 +41,9 @@ class LoginInput extends Component {
     return (
       <View style={styles.backgroundWrap}>
         <Image style={styles.bgImage} source = {require("./../static/images/loginBg.jpg")}/>
-        <TouchableOpacity style={styles.goBack} onPress={()=>{navigate("GameList")}}>
+        {/**<TouchableOpacity style={styles.goBack} onPress={()=>{navigate("GameList")}}>
           <Image  style={styles.goBackImg} source={require("./../static/images/back.png")}/>
-        </TouchableOpacity>
+        </TouchableOpacity>**/}
         {/*Login box*/}
         <Animated.View style={styles.loginAmtBox}>
         <ImageBackground style={styles.loginBox} source={require("./../static/images/loginBorder.png")}>

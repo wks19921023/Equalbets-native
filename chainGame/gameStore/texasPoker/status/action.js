@@ -127,7 +127,7 @@ export function getNextActivePlayer(store,data){
     }
   }
   return nextSeatNo;
-}
+};
 
 
 

@@ -1,5 +1,6 @@
 "use strict";
 import * as actions from "./action";
+import {DeviceEventEmitter} from "react-native";
 export function tableInit(store,data){
 	store.dispatch({
 		type:"TABLE_INIT",
@@ -187,3 +188,10 @@ export function dealCards(store,data){
   }
   //ui做出相应的改变;
 };
+export function tableStatusReply(store,data){
+  //console.log(data)
+  tableInit(store,data);
+  console.log(store.getState());
+  DeviceEventEmitter.emit("updateUi")
+  //console.log(this)
+}

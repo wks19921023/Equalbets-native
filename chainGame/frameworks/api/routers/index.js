@@ -7,7 +7,7 @@ import ws from "./../ws";
 import login from "./login.js";
 import texasPoker from "./texasPoker";
 
-ws.onerror=function(e){
+/**ws.onerror=function(e){
   console.log("ws error msg:"+e);
 };
 ws.onclosed=function(e){
@@ -25,7 +25,7 @@ ws.onmessage=function(e){
     result:replyData.result
   };
   router(action);
-}
+}**/
 
 function router(action){
   switch(action.type){

@@ -15,21 +15,16 @@ class Sure extends Component {
   }
   changeState(){
     if(this.props.display == "flex"){
-      this.props.callback("display","none");
+      this.props.callback("sure","none");
     }else{
-      this.props.callback("display","flex");
-    }; 
+      this.props.callback("sure","flex");
+    };  
+    this.props.click("ffff")
   }
   render() {
     const {I18n} = this.props;
-    let display;
-    if(this.props.display == "none"){
-      display = "flex";
-    }else{
-      display = "none";
-    }
     return (
-      <TouchableOpacity onPress={()=>{this.changeState()}} style={[styles.wrap,{display:display}]}>
+      <TouchableOpacity onPress={()=>{this.changeState()}} style={[styles.wrap,{display:this.props.display}]}>
         <Image style={styles.raise} source={require("./../static/images/raise.png")}/>
         <Text style={styles.text}>{I18n.t("sure")}</Text>
       </TouchableOpacity>

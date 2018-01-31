@@ -9,16 +9,20 @@ class Call extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      display:"none"
+    }
   }
 
   render() {
     const {I18n} = this.props;
     return (
-      <TouchableOpacity style={styles.wrap}>
+      <TouchableOpacity onPress={()=>{
+          this.props.click()
+        }} style={[styles.wrap,{display:this.props.display}]}>
         <Image style={styles.call} source={require("./../static/images/call.png")}></Image>
         <Text style={styles.text}>{I18n.t("call")}</Text>
-        <Text style={styles.account}>650</Text>
+        <Text style={styles.account}>{this.props.text}</Text>
       </TouchableOpacity>
     )
   }
@@ -31,7 +35,7 @@ const styles = StyleSheet.create({
     height:42,
     position:"absolute",
     bottom:2,
-    right:95,
+    right:135,
     zIndex:100,
   },
   call:{

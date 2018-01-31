@@ -36,7 +36,7 @@ class Chip extends Component {
   }
   render() {
     return (
-      <View style={[styles[this.props.wrap+"Wrap"],styles[this.props.align+"Wrap"]]}>
+      <View style={[styles[this.props.wrap+"Wrap"],styles[this.props.align+"Wrap"],this.props.style]}>
         <Image style={styles.opacity} source={this.state.chipOpacity}/>
         <Image style={[styles.chip,styles[this.props.align+"Chip"]]} source={this.state.chipImage}/>
         <Text style={[styles.text,styles[this.props.align+"Text"]]}>{this.props.text}</Text>

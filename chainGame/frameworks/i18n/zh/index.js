@@ -16,5 +16,9 @@ export default {
   check:"让牌",
   allIn:"全押",
   raise:"加注",
-  sure:"确认"
+  sure:"确认",
+  noLimit:"无限注",
+  limit:"限注",
+  potLimit:"底池限注",
+  start:"开始游戏",
 };

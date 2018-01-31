@@ -1,17 +1,26 @@
 import React, { Component, } from 'react'
-import { View,StyleSheet,Text} from 'react-native'
+import { View,StyleSheet,Text,DeviceEventEmitter} from 'react-native'
 
 class LoadingBar extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      display:"flex",
+    }
   }
-
+  componentWillMount(){
+    const _this = this;
+    DeviceEventEmitter.addListener("START_GAME_REPLY",function(data){
+      _this.setState({
+        display:"none"
+      })
+    });
+  }
   render(){
     const {I18n} = this.props;
     return (
-      <View style={styles.loadingBarWrap}>
+      <View style={[styles.loadingBarWrap,{display:this.state.display}]}>
         <Text style={styles.loadingBarText}>{I18n.t("loadingText")}</Text>
       </View>
     )

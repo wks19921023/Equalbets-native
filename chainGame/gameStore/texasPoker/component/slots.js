@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { View,StyleSheet, } from 'react-native'
+import { View,StyleSheet,DeviceEventEmitter} from 'react-native'
 import Slot from './slot';
 class Slots extends Component {
 
@@ -9,15 +9,44 @@ class Slots extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      slot1Display:"none",
+      slot2Display:"none",
+      slot3Display:"none",
+      text1:"0",
+      text2:"0",
+      text3:"0"
+    }
   }
-
+  componentWillMount(){
+    this.roundEnd();
+    this.endAll();
+  }
+  endAll(){
+    const _this = this;
+    const {store} = this.props;
+    DeviceEventEmitter.addListener("END_ALL",function(){
+      _this.setState({
+        slot1Display:"none",
+      });
+    });
+  }
+  roundEnd(){
+    const _this = this;
+    const {store} = this.props;
+    DeviceEventEmitter.addListener("END_ROUND",function(){
+      _this.setState({
+        slot1Display:"flex",
+        text1:store.getState().table.data.pot,
+      });
+    });
+  }
   render() {
     return (
       <View style={styles.wrap}>
-        <Slot wrap="big" text="5685"/>
-        <Slot wrap="small" text="85"/>
-        <Slot wrap="normal" text="888"/>
+        <Slot wrap="big" text={this.state.text1} display={this.state.slot1Display}/>
+        <Slot wrap="small" text={this.state.text2} display={this.state.slot2Display}/>
+        <Slot wrap="normal" text={this.state.text3} display={this.state.slot3Display}/>
       </View>
     )
   }

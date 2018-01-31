@@ -47,7 +47,7 @@ class Slot extends Component {
         normal 100-1000
         small <100
       **/
-      <View style={styles[this.props.wrap]}>       
+      <View style={[styles[this.props.wrap],{display:this.props.display}]}>       
         <Image style={styles[this.props.wrap+"Opacity"]} source={this.state.chipBg}/>
         <Image style={styles[this.props.wrap+"Chip"]} source={this.state.chipImage}/>
         <Text style={styles.text}>{this.props.text}</Text>

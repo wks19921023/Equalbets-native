@@ -12,18 +12,9 @@ class WaitIcon extends Component {
     this.state = {}
   }
   render() {
-    let waitImg,src;
-    const type = this.props.type;
-    if(type=="self"){
-      src = require("./../static/images/wait.png");
-    }else if(type=="left"){
-      src = require("./../static/images/smallWait.png");
-    }else{
-      src = require("./../static/images/smallWait.png");
-    }
     return (
       <View>
-      <Image style={this.props.style} source={src}/>
+      <Image style={this.props.style} source={require("./../static/images/dealer.png")}/>
       </View>
     )
   }

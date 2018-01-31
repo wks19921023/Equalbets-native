@@ -15,9 +15,9 @@ class Raise extends Component {
   }
   changeState(){
     if(this.props.display == "flex"){
-      this.props.callback("display","none");
+      this.props.callback("raise","none");
     }else{
-      this.props.callback("display","flex");
+      this.props.callback("raise","flex");
     };    
   }
   render() {

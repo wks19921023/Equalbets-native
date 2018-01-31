@@ -4,7 +4,7 @@ import ws from "./../../ws";
 import * as events from "./../../constants"; 
 import * as types from "./../../constants/type";
 export function sitIn(action){
-  if(ws.readyState!=1) return console.log("发送请求时，ws已断开！");
+  //if(ws.readyState!=1) return console.log("发送请求时，ws已断开！");
   let sendData = {
     action:{
       type:types.TEXAS_POKER,
@@ -18,7 +18,19 @@ export function sitIn(action){
       username:"test"
     },
   };
-  ws.send(JSON.stringify(sendData));  
+  return fetch("http://192.168.0.45:8000/table/sitIn",{
+    method:"POST",
+    headers:{
+      "Accept":"application/json",
+      "Content-Type":"application/json",
+    },
+    body:JSON.stringify(sendData)
+  })
+  .then((res)=>res.json())
+  .then((resJson)=>{
+    console.log(resJson)
+  })
+  //ws.send(JSON.stringify(sendData));  
 };
 export function leave(action){
   if(ws.readyState!=1) return console.log("发送请求时，ws已断开！");

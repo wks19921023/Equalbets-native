@@ -16,36 +16,36 @@ class TexasPoker extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      display:"flex",
     }
   }
   componentWillMount(){
     const {store} = this.props.screenProps;
-    Provider.listener("GET_INFO_REPLY",this.getInfoReply,store);
-    Provider.listener("SIT_IN_REPLY",Status.tableInit,store);
-    Provider.listener("NEW_PLAYER_EVENT",Status.newPlayer,store);
-    Provider.listener("SIT_REPLY",Status.sit,store);
-    Provider.listener("SIT_EVENT",Status.sit,store);
-    Provider.listener("LEAVE_REPLY",Status.leaveReply,store);
-    Provider.listener("HAND_PRE_START",Status.handPreStart,store);
-    Provider.listener("HAND_BEGIN",Status.handBegin,store);
-    Provider.listener("ACTIVE_REPLY",Status.activeReply,store);
-    Provider.listener("ACTION_EVENT",Status.actionEvent,store);
-    Provider.listener("DEAL_CARDS",Status.dealCards,store);
+    //Provider.listener("GET_INFO_REPLY",this.getInfoReply,store);
+    //Provider.listener("SIT_IN_REPLY",Status.tableInit,store);
+    //Provider.listener("NEW_PLAYER_EVENT",Status.newPlayer,store);
+    //Provider.listener("SIT_REPLY",Status.sit,store);
+    //Provider.listener("SIT_EVENT",Status.sit,store);
+    //Provider.listener("LEAVE_REPLY",Status.leaveReply,store);
+    //Provider.listener("HAND_PRE_START",Status.handPreStart,store);
+    //Provider.listener("HAND_BEGIN",Status.handBegin,store);
+    //Provider.listener("ACTIVE_REPLY",Status.activeReply,store);
+    //Provider.listener("ACTION_EVENT",Status.actionEvent,store);
+    //Provider.listener("DEAL_CARDS",Status.dealCards,store);
+    Provider.listener("TABLE_STATUS_REPLY",Status.tableStatusReply,store);
   }
   componentDidMount(){
     const {api} = this.props.screenProps;
     const {store} = this.props.screenProps;
-    Active.getInfo(api);
-    Active.sitIn(api,{
-        gameType:"noLimit",
-        blinds:{
-            bigBlind:"200",
-            smallBlind:"100",
-        },
-        buyIn:"2000",
-    });
-    Active.leave(api,{
+    Active.getTable(api);
+    //Active.sitIn(api,{
+      //  gameType:"noLimit",
+        //blinds:{
+          //  bigBlind:"200",
+            //smallBlind:"100",
+        //},
+        //buyIn:"200",
+    //});
+    /**Active.leave(api,{
         account:"33389999",
         seatNo:"7",
     });
@@ -66,31 +66,22 @@ class TexasPoker extends Component {
       action:methodArr[0],  //UI输入;
       amount:"10",   //获取UI输入;
       holeCards:["1-2","10-2"],  //手牌;
-    });
+    });**/
   }
   getInfoReply(store,data){   //GET_INFO_REPLY event callback
     
   }
-  //change state
-  changeState(key,value){
-    this._this.setState({
-      [key]:value
-    });
-  }
   render(){
     const {I18n} = this.props.screenProps;
+    const {store} = this.props.screenProps;
+    const {navigate} = this.props.navigation; 
     return (
       <View style={styles.wrap}>
         <ImageBackground source={require("./static/images/gameBg.png")} style={styles.tableBg}>
-          <TouchableOpacity style={styles.backBtnWrap}>
+          <TouchableOpacity onPress={()=>{navigate("GameType")}} style={styles.backBtnWrap}>
             <Image style={styles.backBtn} source={require("./../../frameworks/static/images/back.png")}/>       
           </TouchableOpacity>  
-          <Table />
-          <Fold I18n = {I18n}/>
-          <Call I18n = {I18n}/>
-          <Raise I18n = {I18n} _this={this} callback={this.changeState} display={this.state.display}/>
-          <Sure I18n = {I18n} _this={this} callback={this.changeState} display={this.state.display}/>
-          <ProgressBar _this={this} callback={this.changeState} display={this.state.display}/>
+          <Table store={store} I18n={I18n}/>        
           {/**<Player name="player1" src={require("./static/images/defaultPlayer.png")} balance="2234" playerStyle={styles.player1} type="left"/>
           <Player name="player2" src={require("./static/images/dealer.png")} balance="1000" playerStyle={styles.player2} type="left"/>
           <Player name="player3" src={require("./static/images/defaultPlayer.png")} balance="234" playerStyle={styles.player3} type="left"/>

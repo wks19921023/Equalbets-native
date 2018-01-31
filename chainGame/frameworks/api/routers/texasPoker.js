@@ -57,6 +57,9 @@ export default function texasPoker(action){
     case events.DEAL_CARDS:
       Controller.texasPoker.dealCards(action);
       break;
+    case events.GET_TABLE:
+      Controller.texasPoker.getTable(action);
+      break;  
     default:
       return false;
       break;

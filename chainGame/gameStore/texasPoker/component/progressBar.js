@@ -14,27 +14,20 @@ class ProgressBar extends Component {
       maxValue:"0"
     }
   }
-  changeState(){
-    if(this.props.display == "flex"){
-      this.props.callback("display","none");
-    }else{
-      this.props.callback("display","flex");
-    }; 
+  change(value){
+    this.setState({
+      maxValue:Math.round(value),
+    });
+    this.props.callback(Math.round(value));
   }
   render() {
-    let display;
-    if(this.props.display == "none"){
-      display = "flex";
-    }else{
-      display = "none";
-    }
     return (
-      <View style={[styles.wrap,{display:display}]}>
+      <View style={[styles.wrap,{display:this.props.display}]}>
         <Image style={styles.bgImage} source={require("./../static/images/progressBar.png")}/>
         <Text style={styles.account}>${this.state.maxValue}</Text>
-        <Slider onValueChange={value=>this.setState({
-            maxValue:value
-          })} style={styles.bar} value={0} minimumValue={0} maximumValue={10000} thumbTouchSize={{width:20,height:50}} minimumTrackTintColor="#95712a" trackStyle={styles.track} thumbStyle={styles.thumb} thumbTintColor="#95712a">
+        <Slider onValueChange={(value)=>{
+            this.change(value)
+          }} style={styles.bar} value={0} minimumValue={0} maximumValue={Number(this.props.max)} thumbTouchSize={{width:20,height:50}} minimumTrackTintColor="#95712a" trackStyle={styles.track} thumbStyle={styles.thumb} thumbTintColor="#95712a">
         </Slider>
         <TouchableOpacity style={styles.allInWrap}>
           <ImageBackground style={styles.allIn} source={require("./../static/images/progressBtnOn.png")}>
@@ -62,9 +55,8 @@ const styles = StyleSheet.create({
     width:174,
     height:375,
     position:"absolute",
-    top:0,
-    right:0,
-    zIndex:2,
+    bottom:0,
+    right:-12,
   },
   bgImage:{
     position:"absolute",

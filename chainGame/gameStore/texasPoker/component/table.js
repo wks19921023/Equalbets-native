@@ -20,25 +20,28 @@ class Table extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      player1Display:"none",
+    }
   }
 
   render() {
+    const {store,I18n} = this.props;   
     return (   
       <ImageBackground style={styles.table} source={require("./../static/images/tableBg.png")}>
-        <Player1 />
-        <Player2 />
-        <Player3 />
-        <Player4 />
-        <Player5 />
-        <Player6 />
-        <Player7 />
-        <Player8 />
-        <Player9 />
+        <Player2 store={store}/>
+        <Player3 store={store}/>
+        <Player4 store={store}/>
+        <Player5 store={store}/>
+        <Player6 store={store}/>
+        <Player7 store={store}/>
+        <Player8 store={store}/>
+        <Player9 store={store}/>
+        <Player1 store={store} I18n={I18n}/>
         {/**river**/}
-        <RiverBox />
+        <RiverBox store={store}/>
         {/**slot**/}
-        <Slots />
+        <Slots store={store}/>
       </ImageBackground>
     )
   }

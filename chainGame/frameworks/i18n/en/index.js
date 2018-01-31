@@ -18,4 +18,8 @@ export default {
   allIn:"All In",
   raise:"Raise",
   sure:"OK",
+  noLimit:"NO LIMIT",
+  limit:"LIMIT",
+  potLimit:"POT LIMIT",
+  start: "START",
 };

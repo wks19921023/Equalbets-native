@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { View,ImageBackground,Text,StyleSheet,Animated} from 'react-native'
+import { View,ImageBackground,Text,StyleSheet,Animated,StatusBar} from 'react-native'
 import Orientation from 'react-native-orientation';
 class Start extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class Start extends Component {
   loadingStop(){
       this.loadingStart && clearInterval(this.loadingStart);
       let {navigate} = this.props.navigation;
-      navigate("GameList");
+      navigate("LoginIn");
   }
   componentDidMount(){ //go loginIn page 5min later;
     Animated.timing(
@@ -63,6 +63,7 @@ class Start extends Component {
   render() {
     return (
       <View style={styles.backgroundWrap}>
+        <StatusBar hidden={true} />
         <Animated.Image style={[styles.backgroundImage,{opacity:this.state.imageFade}]} source={require('./../static/images/start.jpg')}/>
         <Text style={styles.loadingFont}>{this.state.loadingText}</Text>
       </View>

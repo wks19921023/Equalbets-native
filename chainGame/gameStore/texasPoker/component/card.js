@@ -1,6 +1,6 @@
 import React, { Component, } from 'react'
-import { View,StyleSheet,Image } from 'react-native'
-
+import { View,StyleSheet,Image,DeviceEventEmitter } from 'react-native'
+import Pokers from "./pokers";
 class Card extends Component {
 
   static propTypes = {}
@@ -9,15 +9,29 @@ class Card extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      card1:Pokers[0],
+      card2:Pokers[1],
+    }
   }
-
+  componentWillMount(){
+    const _this = this;
+    let {store} = this.props;
+    DeviceEventEmitter.addListener("START_GAME_REPLY",function(data){
+      _this.setState({
+        card1:Pokers[data.pokers[store.getState().table.data.player.seatNo][0]],
+        card2:Pokers[data.pokers[store.getState().table.data.player.seatNo][1]],
+      })
+      store.getState().table.data.pokers = data.pokers;
+      //console.log(Pokers[1]);
+    })
+  }
   render() {
     return (
-      <View style={styles.wrap}>     
-        <Image style={styles.firstCard} source={require("./../static/images/poker/19.png")}/>
+      <View style={[styles.wrap,{display:this.props.display}]}>     
+        <Image style={styles.firstCard} source={this.state.card1}/>
         <View style={styles.secondCardWrap}>
-          <Image style={styles.secondCard} source={require("./../static/images/poker/3.png")}/>
+          <Image style={styles.secondCard} source={this.state.card2}/>
         </View>
         <Image style={styles.handImage} source={require("./../static/images/cardHand.png")}/>
       </View>
@@ -33,7 +47,8 @@ const styles = StyleSheet.create({
     position:"absolute",
     left:-6,
     bottom:-16,
-    overflow:"hidden"
+    overflow:"hidden",
+    backgroundColor:"rgba(0,0,0,0)"
   },
   handImage:{
     width:120,
