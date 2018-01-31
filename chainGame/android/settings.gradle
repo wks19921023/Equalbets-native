@@ -1,0 +1,5 @@
+rootProject.name = 'chainGame'
+
+include ':react-native-orientation',':react-native-i18n',':app'
+project(':react-native-orientation').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-orientation/android')
+project(':react-native-i18n').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-i18n/android')
